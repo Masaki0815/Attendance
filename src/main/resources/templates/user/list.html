@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head_fragment(title, scripts, links)">
+    <title>勤怠管理システム</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<meta charset="utf-8" />
+</head>
+<body>
+    <div class="container-sm">
+    <h1>勤怠情報一覧</h1>
+    <p>
+    <a th:href="@{/user/add}">
+	    <div>
+		    <input type="submit" value="登録" class="btn btn-primary">
+	    </div>
+	</a>
+	<p>
+	<table class="table table-striped">
+        <thead>		
+            <tr>
+                <!--<th>ID</th>!-->
+                <th>名前</th>
+                <th>出勤</th>
+                <th>退勤</th>
+                <th>勤務地</th>
+                <th>出勤ボタン</th>
+                <th>退勤ボタン</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${userlist}" th:object="${user}">
+                <!--<td class="center" th:text="*{id}"></td>!-->
+                <td th:text="*{name}"></td>
+                <td th:text="*{begin_time}"></td>
+                <td th:text="*{end_time}"></td>
+                <td>
+                <th:block th:if="*{work_space == 1}">
+                    大宮
+                </th:block>
+                <th:block th:if="*{work_space == 2}">
+                    横浜
+                </th:block>
+                <th:block th:if="*{work_space == 3}">
+                    名古屋
+                </th:block>
+                </td>
+                <td>
+                    <form th:action="@{/user/begin_time}" th:object="${userRequest}" th:method="post">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <div>
+                            <input type="submit" class="btn btn-success" value="出勤">
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/user/end_time}" th:object="${userRequest}" th:method="post">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <div>
+                            <input type="submit" class="btn btn-danger" value="退勤">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+		<form th:action="@{/user/delete}" th:object="${userEntity}" method="get">
+		    <div>
+		        <input type="submit" value="削除" class="btn btn-danger">
+	 	    </div>
+	    </form>
+    </div>
+</body>
+</html>
