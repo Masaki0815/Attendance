@@ -97,7 +97,6 @@ ALTER TABLE ONLY public.data ALTER COLUMN id SET DEFAULT nextval('public.attenda
 --
 
 COPY public.data (begin_time, end_time, name, id, work_space) FROM stdin;
-2023年12月10日 21時15分日曜日	2023年12月10日 21時15分日曜日	aaa	2	1
 \.
 
 
