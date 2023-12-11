@@ -1,36 +1,32 @@
 package com.example.AttendanceManage.Entity;
 
-import java.io.Serializable;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
-/**
- * ユーザー情報 Entity
- */
+import java.io.Serializable;
+
+
 @Entity
 @Data
-@Table(name = "attendances")
+@Table(name = "data")
 public class UserEntity implements Serializable {
 
-    /**
-     * ID
-     */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /**
-     * 名前
-     */
+
     @Column(name = "name")
     private String name;
-    
+
+    @Column(name = "work_space")
+    private Integer work_space;
+
+    @Column(name = "begin_time")
+    private String begin_time;
+
+    @Column(name = "end_time")
+    private String end_time;
 
 }
