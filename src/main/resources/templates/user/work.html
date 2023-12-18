@@ -15,10 +15,14 @@
         <tr>
             <th>日付</th>
             <th>出勤</th>
-            <th>休憩開始</th>
-            <th>休憩終了</th>
+            <th>休憩開始時間</th>
+            <th>休憩終了時間</th>
             <th>退勤</th>
             <th>勤務地</th>
+            <th>出勤ボタン</th>
+            <th>退勤ボタン</th>
+            <th>休憩開始ボタン</th>
+            <th>休憩終了ボタン</th>
         </tr>
         </thead>
         <tbody>
@@ -39,26 +43,56 @@
                     名古屋
                 </th:block>
             </td>
+            <td>
+                <form th:action="@{/user/start_time}" th:object="${userRequest}" th:method="post">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <div>
+                        <input type="submit" class="btn btn-success" value="出勤">
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/user/end_time}" th:object="${userRequest}" th:method="post">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <div>
+                        <input type="submit" class="btn btn-danger" value="退勤">
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/user/start_break}" th:object="${userRequest}" th:method="post">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <div>
+                        <input type="submit" class="btn btn-success" value="休憩開始">
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/user/end_break}" th:object="${userRequest}" th:method="post">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <div>
+                        <input type="submit" class="btn btn-danger" value="休憩終了">
+                    </div>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
-    </div>
+</div>
 <div class="container-sm">
     <table class="table table">
         <thead>
         <tr>
-            <th>削除ボタン</th>
+            <th>勤務場所追加</th>
             <th>戻る</th>
             <th>ログアウト</th>
         </tr>
         </thead>
         <tbody>
         <td>
-            <form th:action="@{/user/delete}" th:object="${userEntity}" method="get">
-                <div>
-                    <input type="submit" value="削除" class="btn btn-danger">
-                </div>
-            </form>
+            <a th:href="@{/user/add}">
+                <input type="submit" value="勤務場所追加" class="btn btn-success">
+            </a>
         </td>
         <td>
             <a th:href="@{/user/index}">

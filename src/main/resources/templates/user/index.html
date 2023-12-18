@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head_fragment(title, scripts, links)">
+    <title>勤怠管理システム</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<meta charset="utf-8" />
+</head>
+<body>
+    <div class="container-sm">
+    <center><table>
+    <thead>
+    <tr>
+        <h2>こんにちはuserさん</h2>
+        <h4><div id="datetime"></div></h4>
+    </tr>
+    <br>
+    <tr>
+        <th>ユーザリスト</th>
+        <th>勤怠管理</th>
+        <th>ログアウト</th>
+    </tr>
+    </thead>
+    <tbody>
+    <td>
+        <a th:href="@{/user/list}">
+            <input type="submit" value="ユーザリスト(管理者権限Only)" class="btn btn-primary">
+        </a>
+    </td>
+    <td>
+        <a th:href="@{/user/work}">
+            <input type="submit" value="勤怠管理(一般ユーザ権限Only)" class="btn btn-primary">
+        </a>
+    </td>
+    <td>
+        <a th:href="@{/user/logout}">
+            <input type="submit" value="ログアウト" class="btn btn-danger">
+        </a>
+    </td>
+    </tbody>
+    </table></center>
+    </div>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script>
+    function showtime(){
+    var today = new Date();
+    $weekday = ['日','月','火','水','木','金','土'];
+    month = today.getMonth() + 1 ;
+    $('#datetime').html(month + "月"+ today.getDate() + "日（" + $weekday[today.getDay()] +"） " +today.getHours() + ":" + ('0'+today.getMinutes()).slice(-2) + ":" + ('0' +today.getSeconds()).slice(-2));
+    }
+setInterval(showtime,1000);
+</script>
+</body>
+</html>
