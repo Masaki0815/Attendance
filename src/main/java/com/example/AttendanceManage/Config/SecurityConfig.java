@@ -1,6 +1,6 @@
 package com.example.AttendanceManage.Config;
 
-import com.example.AttendanceManage.Handler.UserAuthenticationSuccessHandler;
+import com.example.AttendanceManage.Handler.MyAuthenticationSuccessHandler;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
