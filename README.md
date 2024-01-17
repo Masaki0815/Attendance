@@ -9,7 +9,7 @@ CREATE TABLE data(
   "end_break" VARCHAR(100),
   PRIMARY KEY ("id"));
 
-AttendanceManageTest
+AttendanceManageTest psql/
 CREATE TABLE IF NOT EXISTS public.users
 (
     id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
